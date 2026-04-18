@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Titus Samuel | Backend Developer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Courier New', monospace;
+      background: #0d1117;
+      color: #c9d1d9;
+      min-height: 100vh;
+      padding: 60px 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .header {
+      border-bottom: 1px solid #30363d;
+      padding-bottom: 40px;
+      margin-bottom: 60px;
+    }
+
+    .header h1 {
+      font-size: 2rem;
+      color: #f0f6fc;
+      margin-bottom: 8px;
+    }
+
+    .header h1 span {
+      color: #58a6ff;
+    }
+
+    .header p {
+      color: #8b949e;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    .links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .links a {
+      color: #58a6ff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      border: 1px solid #30363d;
+      padding: 6px 14px;
+      border-radius: 6px;
+      transition: border-color 0.2s;
+    }
+
+    .links a:hover {
+      border-color: #58a6ff;
+    }
+
+    .section-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #8b949e;
+      margin-bottom: 30px;
+    }
+
+    .projects {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .project-card {
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 24px;
+      transition: border-color 0.2s;
+    }
+
+    .project-card:hover {
+      border-color: #58a6ff;
+    }
+
+    .project-card h3 {
+      color: #f0f6fc;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .project-card p {
+      color: #8b949e;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .tag {
+      background: #161b22;
+      border: 1px solid #30363d;
+      color: #8b949e;
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .project-link {
+      color: #58a6ff;
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+
+    .project-link:hover {
+      text-decoration: underline;
+    }
+
+    .stack {
+      margin-bottom: 60px;
+    }
+
+    .stack-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .stack-item {
+      background: #161b22;
+      border: 1px solid #30363d;
+      color: #c9d1d9;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+
+    .footer {
+      border-top: 1px solid #30363d;
+      padding-top: 30px;
+      color: #8b949e;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="header">
+      <h1>Titus <span>Samuel</span></h1>
+      <p>Backend Developer · Abuja, Nigeria</p>
+      <div class="links">
+        <a href="https://github.com/saintamadeus" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/titus-samuel-41320b203" target="_blank">LinkedIn</a>
+        <a href="mailto:oluwatimileyinsamuel2018@gmail.com">Email</a>
+      </div>
+    </div>
+
+    <div class="section-title">Projects</div>
+
+    <div class="projects">
+
+      <div class="project-card">
+        <h3>Auth API</h3>
+        <p>Production-ready REST API implementing secure user authentication. Features JWT token management, bcrypt password hashing, role-based access control, and input validation with Zod.</p>
+        <div class="tags">
+          <span class="tag">Node.js</span>
+          <span class="tag">Express</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">JWT</span>
+          <span class="tag">bcrypt</span>
+          <span class="tag">Zod</span>
+        </div>
+        <a class="project-link" href="https://github.com/saintamadeus/auth-api" target="_blank">→ View on GitHub</a>
+      </div>
+
+      <div class="project-card">
+        <h3>Job Queue API</h3>
+        <p>Asynchronous job processing system that decouples task submission from execution. Implements exponential backoff retry logic, full job lifecycle tracking, and background workers.</p>
+        <div class="tags">
+          <span class="tag">Node.js</span>
+          <span class="tag">BullMQ</span>
+          <span class="tag">Redis</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Express</span>
+        </div>
+        <a class="project-link" href="https://github.com/saintamadeus/job-queue-api" target="_blank">→ View on GitHub</a>
+      </div>
+
+      <div class="project-card">
+        <h3>Daily Briefing API</h3>
+        <p>Personal automation system built to solve a real problem — missing my morning ride due to losing track of time. Sends a consolidated Telegram message every morning at 7AM with configurable reminders managed via REST API.</p>
+        <div class="tags">
+          <span class="tag">Node.js</span>
+          <span class="tag">Express</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">node-cron</span>
+          <span class="tag">Telegram API</span>
+        </div>
+        <a class="project-link" href="https://github.com/saintamadeus/daily-briefing-api" target="_blank">→ View on GitHub</a>
+      </div>
+
+    </div>
+
+    <div class="stack">
+      <div class="section-title">Tech Stack</div>
+      <div class="stack-grid">
+        <span class="stack-item">Node.js</span>
+        <span class="stack-item">Express</span>
+        <span class="stack-item">PostgreSQL</span>
+        <span class="stack-item">Redis</span>
+        <span class="stack-item">BullMQ</span>
+        <span class="stack-item">JavaScript</span>
+        <span class="stack-item">REST APIs</span>
+        <span class="stack-item">JWT</span>
+        <span class="stack-item">Git</span>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Built and maintained by Titus Samuel · Open to junior backend roles</p>
+    </div>
+
+  </div>
+</body>
+</html>
