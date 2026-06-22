@@ -86,16 +86,44 @@
       border-radius: 8px;
       padding: 24px;
       transition: border-color 0.2s;
+      position: relative;
     }
 
     .project-card:hover {
       border-color: #58a6ff;
     }
 
-    .project-card h3 {
+    .project-card.flagship {
+      border-color: #3fb950;
+    }
+
+    .project-card.flagship:hover {
+      border-color: #58a6ff;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .card-top h3 {
       color: #f0f6fc;
       font-size: 1.1rem;
-      margin-bottom: 8px;
+    }
+
+    .live-badge {
+      background: rgba(63, 185, 80, 0.15);
+      border: 1px solid #3fb950;
+      color: #3fb950;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
     }
 
     .project-card p {
@@ -103,6 +131,17 @@
       font-size: 0.9rem;
       line-height: 1.6;
       margin-bottom: 16px;
+    }
+
+    .project-card ul {
+      color: #8b949e;
+      font-size: 0.85rem;
+      line-height: 1.7;
+      margin: 0 0 16px 18px;
+    }
+
+    .project-card ul li::marker {
+      color: #58a6ff;
     }
 
     .tags {
@@ -121,6 +160,12 @@
       border-radius: 20px;
     }
 
+    .project-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
     .project-link {
       color: #58a6ff;
       text-decoration: none;
@@ -129,6 +174,10 @@
 
     .project-link:hover {
       text-decoration: underline;
+    }
+
+    .project-link.demo {
+      color: #3fb950;
     }
 
     .stack {
@@ -163,7 +212,7 @@
 
     <div class="header">
       <h1>Titus <span>Samuel</span></h1>
-      <p>Backend Developer · Abuja, Nigeria</p>
+      <p>Backend Developer · Lagos, Nigeria</p>
       <div class="links">
         <a href="https://github.com/saintamadeus" target="_blank">GitHub</a>
         <a href="https://linkedin.com/in/titus-samuel-41320b203" target="_blank">LinkedIn</a>
@@ -175,18 +224,76 @@
 
     <div class="projects">
 
+      <div class="project-card flagship">
+        <div class="card-top">
+          <h3>Nigerian Banking API</h3>
+          <span class="live-badge">Live</span>
+        </div>
+        <p>Production-deployed banking system covering the full backend lifecycle: ACID-safe transactions, event streaming, observability, and CI/CD — not a tutorial project, a system built to run in production and survive concurrent load.</p>
+        <ul>
+          <li>Row-level locking (<code>FOR UPDATE</code>) prevents race conditions on concurrent fund transfers</li>
+          <li>IDOR-proofed: every account query scoped by <code>user_id</code> at the SQL layer</li>
+          <li>Kafka event streaming (KRaft mode) publishes transaction events after every committed write</li>
+          <li>Redis caching with graceful degradation — a cache outage never breaks a committed transaction</li>
+          <li>Prometheus + Grafana observability stack, scraped live on Railway</li>
+          <li>Multi-stage Docker build, GitHub Actions CI running Jest/Supertest on every push</li>
+          <li>React/TypeScript frontend consuming the live API end to end</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Node.js</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Express</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Redis</span>
+          <span class="tag">Kafka</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Prometheus</span>
+          <span class="tag">Grafana</span>
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">Railway</span>
+          <span class="tag">React</span>
+        </div>
+        <div class="project-links">
+          <a class="project-link" href="https://github.com/saintamadeus/nigerian-banking-api" target="_blank">→ View on GitHub</a>
+          <a class="project-link demo" href="https://nigerian-banking-frontend.vercel.app" target="_blank">→ Live Demo</a>
+        </div>
+      </div>
+
       <div class="project-card">
-        <h3>Auth API</h3>
-        <p>Production-ready REST API implementing secure user authentication. Features JWT token management, bcrypt password hashing, role-based access control, and input validation with Zod.</p>
+        <h3>Digital Banking API (TIT Bank)</h3>
+        <p>Full digital banking system with live NIBSS core-banking integration — customer onboarding, identity verification, and intra/inter-bank transfers.</p>
+        <ul>
+          <li>NIBSS/NibssByPhoenix integration for BVN and NIN identity verification, with server-side token caching so the client never touches credentials</li>
+          <li>Name-enquiry endpoint verifies the recipient before any funds move</li>
+          <li>Every transaction stored with a unique reference ID for status lookup and audit</li>
+          <li>Domain-modular structure: auth, onboarding, accounts, transactions</li>
+        </ul>
         <div class="tags">
           <span class="tag">Node.js</span>
           <span class="tag">Express</span>
           <span class="tag">PostgreSQL</span>
           <span class="tag">JWT</span>
-          <span class="tag">bcrypt</span>
-          <span class="tag">Zod</span>
+          <span class="tag">NIBSS Integration</span>
         </div>
-        <a class="project-link" href="https://github.com/saintamadeus/auth-api" target="_blank">→ View on GitHub</a>
+        <a class="project-link" href="https://github.com/saintamadeus/digital-banking-api-nibss" target="_blank">→ View on GitHub</a>
+      </div>
+
+      <div class="project-card">
+        <h3>Food Supply Chain Tracking API</h3>
+        <p>Multi-stakeholder REST API tracking food products from producer to consumer across six distinct roles, each with its own authorized actions.</p>
+        <ul>
+          <li>Access + refresh token auth; logout invalidates the refresh token server-side</li>
+          <li>Full audit trail per batch via a queryable event-trail endpoint</li>
+          <li>State machines enforced at the API layer for batches, shipments, and orders</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Node.js</span>
+          <span class="tag">Express</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">JWT</span>
+          <span class="tag">Helmet</span>
+        </div>
+        <a class="project-link" href="https://github.com/saintamadeus/food-supply-chain-api" target="_blank">→ View on GitHub</a>
       </div>
 
       <div class="project-card">
@@ -200,6 +307,20 @@
           <span class="tag">Express</span>
         </div>
         <a class="project-link" href="https://github.com/saintamadeus/job-queue-api" target="_blank">→ View on GitHub</a>
+      </div>
+
+      <div class="project-card">
+        <h3>Auth API</h3>
+        <p>Production-ready REST API implementing secure user authentication. Features JWT token management, bcrypt password hashing, role-based access control, and input validation with Zod.</p>
+        <div class="tags">
+          <span class="tag">Node.js</span>
+          <span class="tag">Express</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">JWT</span>
+          <span class="tag">bcrypt</span>
+          <span class="tag">Zod</span>
+        </div>
+        <a class="project-link" href="https://github.com/saintamadeus/auth-api" target="_blank">→ View on GitHub</a>
       </div>
 
       <div class="project-card">
@@ -221,10 +342,17 @@
       <div class="section-title">Tech Stack</div>
       <div class="stack-grid">
         <span class="stack-item">Node.js</span>
+        <span class="stack-item">TypeScript</span>
         <span class="stack-item">Express</span>
         <span class="stack-item">PostgreSQL</span>
         <span class="stack-item">Redis</span>
+        <span class="stack-item">Kafka</span>
         <span class="stack-item">BullMQ</span>
+        <span class="stack-item">Docker</span>
+        <span class="stack-item">GitHub Actions</span>
+        <span class="stack-item">Prometheus</span>
+        <span class="stack-item">Grafana</span>
+        <span class="stack-item">React</span>
         <span class="stack-item">JavaScript</span>
         <span class="stack-item">REST APIs</span>
         <span class="stack-item">JWT</span>
